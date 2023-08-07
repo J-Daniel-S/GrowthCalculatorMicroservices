@@ -1,0 +1,5 @@
+package the.best.fixedassetprovider.templates;
+
+public interface FixedAsset {
+
+}

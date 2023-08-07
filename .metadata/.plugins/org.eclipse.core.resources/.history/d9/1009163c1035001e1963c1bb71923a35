@@ -1,0 +1,5 @@
+package the.best.growthvaluecalculator.templtaes;
+
+public interface FixedAsset {
+
+}

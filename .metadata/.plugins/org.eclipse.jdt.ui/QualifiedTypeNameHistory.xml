@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="the.best.fixedassetprovider.assets.Fixed"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.web.WebProperties.Resources.Chain.Strategy.Fixed"/>
+    <fullyQualifiedTypeName name="the.best.stockprovider.templates.StockAsset"/>
+    <fullyQualifiedTypeName name="the.best.growthvaluecalculator.templates.FixedAsset"/>
+    <fullyQualifiedTypeName name="the.best.growthvaluecalculator.templates.StockAsset"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,7 @@
+INDEX VERSION 1.134+C:\Users\caitwarnberg\eclipse-workspace2\GrowthCalc\.metadata\.plugins\org.eclipse.jdt.core
+643825382.index
+3461610363.index
+3855460191.index
+1865797976.index
+2777664707.index
+141167278.index
