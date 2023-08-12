@@ -5,3 +5,7 @@
 1691405590892	Rename local variable 'StockAsset'
 1691405601675	Rename local variable 'StockAsset'
 1691405624178	Rename local variable 'FixedAsset'
+1691723066020	Rename type 'StockAsset'
+1691723280634	Rename type 'FixedAsset'
+1691736049538	Delete element
+1691736055525	Delete element

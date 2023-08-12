@@ -1,0 +1,16 @@
+spring.application.name=growth-value-calculator
+server.port=8000
+
+server.fixed=http://localhost:8100/
+server.stock=http://localhost:8200/
+
+spring.config.import=optional:configserver:http://localhost:8888
+spring.cloud.config.import-check.enabled=false
+
+#can put 'naming-server:8761/eureka to get it to work when running parallel containers
+eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+
+management.tracing.sampling.probability=0.05
+logging.pattern.level=%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]
+
+

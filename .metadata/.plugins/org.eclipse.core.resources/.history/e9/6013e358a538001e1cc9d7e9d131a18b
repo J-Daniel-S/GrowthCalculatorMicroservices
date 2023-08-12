@@ -1,0 +1,151 @@
+package the.best.stockprovider.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import the.best.stockprovider.asset.Stock;
+import the.best.stockprovider.templates.ReturnValues;
+
+@RestController
+public class StockController {
+	
+	@Autowired
+	public Environment env;
+
+	//might not use this...
+	@PostMapping("/fcf/{growthRate}")
+	public ResponseEntity<Stock> getStockFcfGrowthRate(
+			@RequestBody Stock stockRequest,
+			@PathVariable long growthRate
+			) {
+		
+		StringBuilder request = new StringBuilder()
+				.append(env.getProperty("calculator.path"))
+				.append(env.getProperty("calculator.port"))
+				.append("/stock-fcf")
+				.append("?desiredReturn=").append(stockRequest.getDesiredReturn())
+				.append("&fcf0=").append(stockRequest.getFreeCashFlow()[0])
+				.append("&fcf1=").append(stockRequest.getFreeCashFlow()[1])
+				.append("&fcf2=").append(stockRequest.getFreeCashFlow()[2])
+				.append("&fcf3=").append(stockRequest.getFreeCashFlow()[3])
+				.append("&fcf4=").append(stockRequest.getFreeCashFlow()[4])
+				.append("&shares=").append(stockRequest.getShares())
+				.append("&marginOfSafety=").append(stockRequest.getMarginOfSafety())
+				.append("&currentEquity=").append(stockRequest.getCurrentEquity())
+				.append("&growthRate=").append(growthRate);
+		
+		ReturnValues response = new RestTemplate().getForObject(request.toString(), ReturnValues.class);
+		
+		stockRequest.setAvgChange(response.getFcfChange());
+		stockRequest.setBuyAndHoldValue(response.getFairPrice());
+		stockRequest.setDiscountedValue(response.getDiscountedPrice());
+		stockRequest.setChange(response.getPercentChange());
+		
+		return ResponseEntity.ok(stockRequest);
+	}
+	
+	@PostMapping("/fcf")
+	public ResponseEntity<Stock> getStockFcf(
+			@RequestBody Stock stockRequest	
+			) {
+		
+		StringBuilder request = new StringBuilder()
+				.append(env.getProperty("calculator.path"))
+				.append(env.getProperty("calculator.port"))
+				.append("/stock-fcf")
+				.append("?desiredReturn=").append(stockRequest.getDesiredReturn())
+				.append("&fcf0=").append(stockRequest.getFreeCashFlow()[0])
+				.append("&fcf1=").append(stockRequest.getFreeCashFlow()[1])
+				.append("&fcf2=").append(stockRequest.getFreeCashFlow()[2])
+				.append("&fcf3=").append(stockRequest.getFreeCashFlow()[3])
+				.append("&fcf4=").append(stockRequest.getFreeCashFlow()[4])
+				.append("&shares=").append(stockRequest.getShares())
+				.append("&marginOfSafety=").append(stockRequest.getMarginOfSafety())
+				.append("&currentEquity=").append(stockRequest.getCurrentEquity());
+		
+		ReturnValues response = new RestTemplate().getForObject(request.toString(), ReturnValues.class);
+		
+		stockRequest.setAvgChange(response.getFcfChange());
+		stockRequest.setBuyAndHoldValue(response.getFairPrice());
+		stockRequest.setDiscountedValue(response.getDiscountedPrice());
+		stockRequest.setChange(response.getPercentChange());
+		
+		return ResponseEntity.ok(stockRequest);
+	}
+	
+	@PostMapping("/")
+	public ResponseEntity<Stock> getStock(
+			@RequestBody Stock stockRequest	
+			) {
+		
+		StringBuilder request = new StringBuilder()
+				.append(env.getProperty("calculator.path"))
+				.append(env.getProperty("calculator.port"))
+				.append("/stock")
+				.append("?desiredReturn=").append(stockRequest.getDesiredReturn())
+				.append("&cf0=").append(stockRequest.getCashFlows()[0])
+				.append("&cf1=").append(stockRequest.getCashFlows()[1])
+				.append("&cf2=").append(stockRequest.getCashFlows()[2])
+				.append("&cf3=").append(stockRequest.getCashFlows()[3])
+				.append("&cf4=").append(stockRequest.getCashFlows()[4])
+				.append("&capex0=").append(stockRequest.getCapitalExpenditures()[0])
+				.append("&capex1=").append(stockRequest.getCapitalExpenditures()[1])
+				.append("&capex2=").append(stockRequest.getCapitalExpenditures()[2])
+				.append("&capex3=").append(stockRequest.getCapitalExpenditures()[3])
+				.append("&capex4=").append(stockRequest.getCapitalExpenditures()[4])
+				.append("&shares=").append(stockRequest.getShares())
+				.append("&marginOfSafety=").append(stockRequest.getMarginOfSafety())
+				.append("&currentEquity=").append(stockRequest.getCurrentEquity());
+		
+		ReturnValues response = new RestTemplate().getForObject(request.toString(), ReturnValues.class);
+		
+		stockRequest.setAvgChange(response.getFcfChange());
+		stockRequest.setBuyAndHoldValue(response.getFairPrice());
+		stockRequest.setDiscountedValue(response.getDiscountedPrice());
+		stockRequest.setChange(response.getPercentChange());
+		
+		return ResponseEntity.ok(stockRequest);
+	}
+	
+	@PostMapping("/{growthRate}")
+	public ResponseEntity<Stock> getStockGrowthRate(
+			@RequestBody Stock stockRequest,
+			@PathVariable long growthRate
+			) {
+		
+		StringBuilder request = new StringBuilder()
+				.append(env.getProperty("calculator.path"))
+				.append(env.getProperty("calculator.port"))
+				.append("/stock")
+				.append("?desiredReturn=").append(stockRequest.getDesiredReturn())
+				.append("&cf0=").append(stockRequest.getCashFlows()[0])
+				.append("&cf1=").append(stockRequest.getCashFlows()[1])
+				.append("&cf2=").append(stockRequest.getCashFlows()[2])
+				.append("&cf3=").append(stockRequest.getCashFlows()[3])
+				.append("&cf4=").append(stockRequest.getCashFlows()[4])
+				.append("&capex0=").append(stockRequest.getCapitalExpenditures()[0])
+				.append("&capex1=").append(stockRequest.getCapitalExpenditures()[1])
+				.append("&capex2=").append(stockRequest.getCapitalExpenditures()[2])
+				.append("&capex3=").append(stockRequest.getCapitalExpenditures()[3])
+				.append("&capex4=").append(stockRequest.getCapitalExpenditures()[4])
+				.append("&shares=").append(stockRequest.getShares())
+				.append("&marginOfSafety=").append(stockRequest.getMarginOfSafety())
+				.append("&currentEquity=").append(stockRequest.getCurrentEquity());
+		
+		ReturnValues response = new RestTemplate().getForObject(request.toString(), ReturnValues.class);
+		
+		stockRequest.setAvgChange(response.getFcfChange());
+		stockRequest.setBuyAndHoldValue(response.getFairPrice());
+		stockRequest.setDiscountedValue(response.getDiscountedPrice());
+		stockRequest.setChange(response.getPercentChange());
+		
+		return ResponseEntity.ok(stockRequest);
+	}
+	
+}

@@ -1,11 +1,11 @@
 package the.best.stockprovider.asset;
 
-import the.best.stockprovider.templates.StockAsset;
+import the.best.stockprovider.templates.StockRequest;
 import java.util.Arrays;
 
 import org.springframework.lang.NonNull;
 
-public class Stock implements StockAsset {
+public class Stock implements StockRequest {
 
 	private String ticker;
 	private double buyAndHoldValue;
@@ -62,6 +62,14 @@ public class Stock implements StockAsset {
 		super();
 		this.cashFlows = cashFlows;
 		this.capitalExpenditures = capitalExpenditures;
+	}
+	
+	public Stock(double[] percentChange, double fcfChange, double fairValue, double discountedValue) {
+		this.change = percentChange;
+		this.avgChange = fcfChange;
+		this.buyAndHoldValue = fairValue;
+		this.discountedValue = discountedValue;
+		
 	}
 
 	public Stock() {
@@ -166,8 +174,12 @@ public class Stock implements StockAsset {
 
 	@Override
 	public String toString() {
-		return "stock [buyAndHoldValue=" + buyAndHoldValue + ", discountedValue=" + discountedValue + ", cashFlows="
-				+ Arrays.toString(cashFlows) + ", capitalExpenditures=" + Arrays.toString(capitalExpenditures) + "]";
+		return "Stock [ticker=" + ticker + ", buyAndHoldValue=" + buyAndHoldValue + ", discountedValue="
+				+ discountedValue + ", desiredReturn=" + desiredReturn + ", currentEquity=" + currentEquity
+				+ ", marginOfSafety=" + marginOfSafety + ", shares=" + shares + ", cashFlows="
+				+ Arrays.toString(cashFlows) + ", capitalExpenditures=" + Arrays.toString(capitalExpenditures)
+				+ ", freeCashFlow=" + Arrays.toString(freeCashFlow) + ", change=" + Arrays.toString(change)
+				+ ", avgChange=" + avgChange + "]";
 	}
 
 }

@@ -1,0 +1,6 @@
+1691723210103	Rename type 'StockAsset'
+1691799438415	Extract method 'setReturnValues'
+1691799571145	Extract method 'buildRequestUrl'
+1691799671767	Extract method 'buildRequestUrl'
+1691800433817	Extract method 'handleReturn'
+1691800446864	Extract method 'handleReturn'

@@ -1,23 +1,24 @@
 
-‚	java:S117+"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ù™£Æ8¥Øˆıœ1HGRMINORZ
+“
+java:S1488J"[Immediately return this expression instead of assigning it to the temporary variable "val".(Ó…Ãúÿÿÿÿ8¥Øˆıœ1H¡RMINORZ
 CODE_SMELL
-’
-java:S1488F"[Immediately return this expression instead of assigning it to the temporary variable "val".(Ó…Ãúÿÿÿÿ8¥Øˆıœ1HHRMINORZ
+o
+java:S1854"<Remove this useless assignment to local variable "decimals".(ùÛª¼8¥Øˆıœ1H RMAJORZ
 CODE_SMELL
-’
-java:S1488M"[Immediately return this expression instead of assigning it to the temporary variable "val".(é ÿÿÿÿÿ8¥Øˆıœ1HKRMINORZ
+S
+java:S2129" Remove this "String" constructor(ùÛª¼8¥Øˆıœ1H©RMAJORZ
 CODE_SMELL
-k
-java:S2184="@Cast one of the operands of this integer division to a "double".(™óÀ©8¥Øˆıœ1HNRMINORZBUG
-q
-java:S1118
-":Add a private constructor to hide the implicit public one.(›¥ØÚúÿÿÿÿ8¥Øˆıœ1HORMAJORZ
+l
+java:S2184A"@Cast one of the operands of this integer division to a "double".(™óÀ©8¥Øˆıœ1H¨RMINORZBUG
+q	java:S106€"9Replace this use of System.out or System.err by a logger.(İáüåıÿÿÿÿ8¥Øˆıœ1H¤RMAJORZ
 CODE_SMELL
-n
-java:S1854"<Remove this useless assignment to local variable "decimals".(ùÛª¼8¥Øˆıœ1HPRMAJORZ
+y
+java:S2184"HCast one of the operands of this multiplication operation to a "double".(»í‘­üÿÿÿÿ8ü™ãš1HRMINORZBUG
+“
+java:S1488Q"[Immediately return this expression instead of assigning it to the temporary variable "val".(é ÿÿÿÿÿ8¥Øˆıœ1H¥RMINORZ
 CODE_SMELL
-R
-java:S2129" Remove this "String" constructor(ùÛª¼8¥Øˆıœ1HQRMAJORZ
+m
+java:S1172¢"4Remove this unused method parameter "percentChange".( ¨úşÿÿÿÿ8¿âŸ1H«RMAJORZ
 CODE_SMELL
-o	java:S106|"9Replace this use of System.out or System.err by a logger.(İáüåıÿÿÿÿ8¥Øˆıœ1HSRMAJORZ
+ˆ	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àä¢Øùÿÿÿÿ8¥Øˆıœ1HRMINORZ
 CODE_SMELL

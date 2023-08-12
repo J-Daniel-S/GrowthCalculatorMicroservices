@@ -1,0 +1,25 @@
+package the.best.fixedassetprovider.controllers;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import the.best.fixedassetprovider.assets.Fixed;
+import the.best.fixedassetprovider.templates.FixedRequest;
+
+@RestController
+@RequestMapping("/fixed")
+public class FixedController {
+	
+	@GetMapping("/{princ}/{inter}/{leng}/{comp}")
+	public FixedRequest getFixedAsset(
+			@PathVariable long princ, 
+			@PathVariable double inter,
+			@PathVariable int leng,
+			@PathVariable int comp
+					) {
+		return new Fixed(princ, inter, leng, comp);
+	}
+
+}

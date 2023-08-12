@@ -1,0 +1,48 @@
+package the.best.stockprovider.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import the.best.stockprovider.asset.Stock;
+
+@RestController
+public class StockController {
+	
+	@Autowired
+	public Environment env;
+
+	@PostMapping("/")
+	public ResponseEntity<Stock> getStock(
+			@RequestBody Stock stockRequest	
+			) {
+		
+		StringBuilder request = new StringBuilder()
+				.append(env.getProperty("calculator.path"))
+				.append(env.getProperty("calculator.port"))
+				.append("/stock-fcf")
+				.append("?desiredReturn=").append(stockRequest.getDesiredReturn())
+				.append("&fcf0=").append(stockRequest.getFreeCashFlow()[0])
+				.append("&fcf1=").append(stockRequest.getFreeCashFlow()[1])
+				.append("&fcf2=").append(stockRequest.getFreeCashFlow()[2])
+				.append("&fcf3=").append(stockRequest.getFreeCashFlow()[3])
+				.append("&fcf4=").append(stockRequest.getFreeCashFlow()[4])
+				.append("&shares=").append(stockRequest.getShares())
+				.append("&marginOfSafety=").append(stockRequest.getMarginOfSafety())
+				.append("&currentEquity=").append(stockRequest.getCurrentEquity());
+//		System.out.println(request.toString());
+		
+		
+		Stock response = new RestTemplate().getForObject(request.toString(), Stock.class);
+		System.out.println(response);
+		
+//		System.out.println(response);
+		
+		return ResponseEntity.ok(stockRequest);
+	}
+	
+}

@@ -4,22 +4,16 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-import the.best.growthvaluecalculator.templates.FixedAsset;
-import the.best.growthvaluecalculator.templates.StockAsset;
+import the.best.growthvaluecalculator.templates.StockRequest;
 
 public class Calculator {
-
-	public static FixedAsset calculateValue(FixedAsset fixed) {
-		long p = fixed.getPrinciple();
-		double r = fixed.getInterestRate() / 100;
-		double l = fixed.getiLength();
-		int n = fixed.getCompoundFrequency();
-
-		double t = p * Math.pow(1 + (r / n), n * l);
-
-		fixed.setEndValue(t);
-
-		return fixed;
+	
+	private Calculator() {
+		
+	}
+	
+	public static double calculateTotal(long principle, double interest, int length, int compoundFrequency) {
+		return principle * Math.pow(1 + (interest / compoundFrequency), compoundFrequency* length );
 	}
 
 //	calculates and fills the dcf multipliers array: used only by the discounted cash flow method
@@ -40,9 +34,19 @@ public class Calculator {
 	}
 
 	// capital expenditures taken from cash flow from operations
-	public static long[] calculateFreeCashFlow(StockAsset StockAsset) {
+	public static long[] calculateFreeCashFlow(StockRequest StockAsset) {
 		long[] cf = StockAsset.getCashFlows();
 		long[] capex = StockAsset.getCapitalExpenditures();
+		long[] fcf = new long[5];
+
+		for (int i = 0; i < capex.length; i++) {
+			fcf[i] = cf[i] - capex[i];
+		}
+
+		return fcf;
+	}
+	
+	public static long[] calculateFreeCashFlow(long[] cf, long[] capex) {
 		long[] fcf = new long[5];
 
 		for (int i = 0; i < capex.length; i++) {
@@ -110,7 +114,7 @@ public class Calculator {
 		return totalDcf;
 	}
 
-	public static long calculateTotal(StockAsset stock) {
+	public static long calculateTotal(StockRequest stock) {
 		stock.setMarginOfSafety(String.valueOf(Double.valueOf(stock.getMarginOfSafety()) / 100));
 		long[] fcf = calculateFreeCashFlow(stock);
 		double[] percentChange = calculatePercentChange(fcf);
@@ -125,7 +129,7 @@ public class Calculator {
 		return totalDcf + equity;
 	}
 
-	public static long calculateTotal(StockAsset stock, long fcfChange) {
+	public static long calculateTotal(StockRequest stock, long fcfChange) {
 		stock.setMarginOfSafety(String.valueOf(Double.valueOf(stock.getMarginOfSafety()) / 100));
 		long[] fcf = calculateFreeCashFlow(stock);
 		double[] percentChange = calculatePercentChange(fcf);
@@ -138,7 +142,8 @@ public class Calculator {
 		return totalDcf + equity;
 	}
 
-	public static long calculateTotalFcf(StockAsset stock) {
+	//not needed
+	public static long calculateTotalFcf(StockRequest stock) {
 		stock.setMarginOfSafety(String.valueOf(Double.valueOf(stock.getMarginOfSafety()) / 100));
 		double[] percentChange = calculatePercentChange(stock.getFreeCashFlow());
 		stock.setChange(percentChange);
@@ -150,8 +155,21 @@ public class Calculator {
 		long totalDcf = totalDcf(calcFcf, fcfChange, dcfMultipliers);
 		return totalDcf + equity;
 	}
+	
+	public static long calculateTotalFcf(long[] fcf, 
+			long desiredReturn, 
+			long currentEquity, 
+			double[] percentChange,
+			double fcfChange
+			) {
+		double[] dcfMultipliers = calculateDcfMultipliers(desiredReturn);
+		long calcFcf = getFcfForCalculation(fcf);
+		long totalDcf = totalDcf(calcFcf, fcfChange, dcfMultipliers);
+		return totalDcf + currentEquity;
+	}
 
-	public static long calculateTotalFcf(StockAsset stock, long fcfChange) {
+	//not needed... still don't know what fcfchange is for
+	public static long calculateTotalFcf(StockRequest stock, long fcfChange) {
 		stock.setMarginOfSafety(String.valueOf(Double.valueOf(stock.getMarginOfSafety()) / 100));
 		double[] percentChange = calculatePercentChange(stock.getFreeCashFlow());
 		stock.setChange(percentChange);
@@ -163,11 +181,21 @@ public class Calculator {
 		return totalDcf + equity;
 	}
 
-	public static StockAsset setPrices(StockAsset stock, long total) {
+	//not needed
+	public static StockRequest setPrices(StockRequest stock, long total) {
 		double fairPrice = (double) total / stock.getShares();
 		double discountedPrice = fairPrice * (1 - Double.valueOf(stock.getMarginOfSafety()));
 		stock.setBuyAndHoldValue(fairPrice);
 		stock.setDiscountedValue(discountedPrice);
 		return stock;
 	}
+	
+	public static double getFairPrice(long total, long shares) {
+		return  (double) total / shares;
+	}
+	
+	public static double getDiscountedPrice(double fairPrice, double marginOfSafety) {
+		return  fairPrice * (1 - marginOfSafety);
+	}
+
 }

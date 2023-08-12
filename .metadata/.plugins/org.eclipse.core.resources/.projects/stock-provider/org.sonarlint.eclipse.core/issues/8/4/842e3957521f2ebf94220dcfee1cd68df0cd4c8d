@@ -1,0 +1,25 @@
+
+c
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Ÿ³—Ä1Há	RMINORZ
+CODE_SMELL
+e
+java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8Ÿ³—Ä1Hß	RMINORZ
+CODE_SMELL
+†
+java:S1192$"PDefine a constant instead of duplicating this literal "calculator.path" 4 times.(¹ÚµÅ8ÑÌäÃ1HÛRCRITICALZ
+CODE_SMELL
+†
+java:S1192'"PDefine a constant instead of duplicating this literal "?desiredReturn=" 4 times.(öèÈÙ8ÑÌäÃ1HÌRCRITICALZ
+CODE_SMELL
+„
+java:S11922"IDefine a constant instead of duplicating this literal "&shares=" 4 times.(¯×®–ûÿÿÿÿ8ÑÌäÃ1HàRCRITICALZ
+CODE_SMELL
+‹
+java:S1192%"PDefine a constant instead of duplicating this literal "calculator.port" 4 times.(­å¡èşÿÿÿÿ8ÑÌäÃ1H®RCRITICALZ
+CODE_SMELL
+Œ
+java:S11923"QDefine a constant instead of duplicating this literal "&marginOfSafety=" 4 times.(—ŞÂÀûÿÿÿÿ8ÑÌäÃ1HÇRCRITICALZ
+CODE_SMELL
+†
+java:S11924"PDefine a constant instead of duplicating this literal "&currentEquity=" 4 times.(œ×üı8ÑÌäÃ1HÑRCRITICALZ
+CODE_SMELL

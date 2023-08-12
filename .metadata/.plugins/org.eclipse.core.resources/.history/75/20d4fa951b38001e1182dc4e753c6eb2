@@ -1,0 +1,20 @@
+package the.best.stockprovider.controllers;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import the.best.stockprovider.asset.Stock;
+
+@RestController
+public class StockController {
+
+	@GetMapping("/")
+	public ResponseEntity<Stock> getStock(
+			@PathVariable long jabroni	
+			) {
+		return ResponseEntity.ok(new Stock());
+	}
+	
+}

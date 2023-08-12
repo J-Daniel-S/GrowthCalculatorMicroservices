@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="the.best.fixedassetprovider.assets.Fixed"/>
     <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.web.WebProperties.Resources.Chain.Strategy.Fixed"/>
     <fullyQualifiedTypeName name="the.best.stockprovider.templates.StockAsset"/>
     <fullyQualifiedTypeName name="the.best.growthvaluecalculator.templates.FixedAsset"/>
     <fullyQualifiedTypeName name="the.best.growthvaluecalculator.templates.StockAsset"/>
+    <fullyQualifiedTypeName name="the.best.growthvaluecalculator.util.Calculator"/>
+    <fullyQualifiedTypeName name="the.best.fixedassetprovider.assets.Fixed"/>
+    <fullyQualifiedTypeName name="org.apache.hc.core5.http.HttpStatus"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="org.springframework.web.client.RestTemplate"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+    <fullyQualifiedTypeName name="the.best.stockprovider.templates.ReturnValues"/>
+    <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity.BodyBuilder"/>
+    <fullyQualifiedTypeName name="the.best.stockprovider.utils.RequestHandler"/>
+    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
+    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.gateway.filter.GatewayFilterChain"/>
+    <fullyQualifiedTypeName name="org.springframework.core.env.Environment"/>
+    <fullyQualifiedTypeName name="org.springframework.cloud.gateway.route.Route"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,87 @@
+package the.best.growthvaluecalculator.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import the.best.growthvaluecalculator.responses.CalculatorResponse;
+import the.best.growthvaluecalculator.util.Calculator;
+
+@RestController
+public class CalculatorController {
+	
+	@GetMapping("/stock-fcf")
+	public ResponseEntity<CalculatorResponse> calculateStockValueFcf(
+			@RequestParam long desiredReturn, 
+			@RequestParam long fcf0, 
+			@RequestParam long fcf1, 
+			@RequestParam long fcf2, 
+			@RequestParam long fcf3, 
+			@RequestParam long fcf4, 
+			@RequestParam long shares, 
+			@RequestParam long marginOfSafety, 
+			@RequestParam long currentEquity,
+			@RequestParam(required= false) Long growthRate
+			) {
+		long[] fcf = new long[5];
+		fcf[0] = fcf0;
+		fcf[1] = fcf1;
+		fcf[2] = fcf2;
+		fcf[3] = fcf3;
+		fcf[4] = fcf4;
+		
+		double[] percentChange = Calculator.calculatePercentChange(fcf);
+		double fcfChange = Calculator.getChangeForCalc(percentChange);
+		
+		double fairPrice = Calculator.getFairPrice(Calculator.calculateTotalFcf(fcf, desiredReturn, currentEquity, percentChange, fcfChange), shares);
+		double discountedPrice = Calculator.getDiscountedPrice(fairPrice, marginOfSafety/100);
+		
+		return ResponseEntity.ok(new CalculatorResponse(
+				percentChange, fcfChange, fairPrice, discountedPrice
+				));
+	}
+	
+	@GetMapping("/stock")
+	public ResponseEntity<CalculatorResponse> calculateStockValue(
+			@RequestParam long desiredReturn, 
+			@RequestParam long fcf0, 
+			@RequestParam long fcf1, 
+			@RequestParam long fcf2, 
+			@RequestParam long fcf3, 
+			@RequestParam long fcf4, 
+			@RequestParam long shares, 
+			@RequestParam long marginOfSafety, 
+			@RequestParam long currentEquity,
+			@RequestParam(required= false) Long growthRate
+			) {
+		long[] fcf = new long[5];
+		fcf[0] = fcf0;
+		fcf[1] = fcf1;
+		fcf[2] = fcf2;
+		fcf[3] = fcf3;
+		fcf[4] = fcf4;
+		
+		double[] percentChange = Calculator.calculatePercentChange(fcf);
+		double fcfChange = Calculator.getChangeForCalc(percentChange);
+		
+		double fairPrice = Calculator.getFairPrice(Calculator.calculateTotalFcf(fcf, desiredReturn, currentEquity, percentChange, fcfChange), shares);
+		double discountedPrice = Calculator.getDiscountedPrice(fairPrice, marginOfSafety/100);
+		
+		return ResponseEntity.ok(new CalculatorResponse(
+				percentChange, fcfChange, fairPrice, discountedPrice
+				));
+	}
+	
+	@GetMapping("/fixed")
+	public double calculateFixedValue(
+			@RequestParam long principle, 
+			@RequestParam double interest,
+			@RequestParam int length,
+			@RequestParam int compoundFrequency
+			) {
+		return Calculator.calculateTotal(principle, interest, length, compoundFrequency);
+
+	}
+	
+}

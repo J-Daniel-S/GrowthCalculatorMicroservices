@@ -1,0 +1,21 @@
+package the.best.stockprovider.controllers;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RestController;
+
+import the.best.stockprovider.asset.Stock;
+
+@RestController
+public class StockController {
+
+	@GetMapping("/")
+	public ResponseEntity<Stock> getStock(
+			@RequestHeader Stock stockRequest	
+			) {
+		System.out.println(stockRequest.toString());
+		return ResponseEntity.ok(stockRequest);
+	}
+	
+}
