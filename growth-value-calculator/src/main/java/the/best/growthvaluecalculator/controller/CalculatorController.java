@@ -1,6 +1,7 @@
 package the.best.growthvaluecalculator.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import the.best.growthvaluecalculator.responses.CalculatorResponse;
 import the.best.growthvaluecalculator.util.Calculator;
 
 @RestController//8000
+//@CrossOrigin(origins = "*")
 public class CalculatorController {
 	
 	@GetMapping("/stock-fcf")
@@ -32,7 +34,14 @@ public class CalculatorController {
 		fcf[4] = fcf4;
 		
 		double[] percentChange = Calculator.calculatePercentChange(fcf);
-		double fcfChange = Calculator.getChangeForCalc(percentChange);
+		double fcfChange;
+		
+		if (growthRate == null) {
+			fcfChange = Calculator.getChangeForCalc(percentChange);
+			
+		} else {
+			fcfChange = growthRate;
+		}
 		
 		double fairPrice = Calculator.getFairPrice(Calculator.calculateTotalFcf(fcf, desiredReturn, currentEquity, percentChange, fcfChange), shares);
 		double discountedPrice = Calculator.getDiscountedPrice(fairPrice, ((double) marginOfSafety)/100);
@@ -77,8 +86,21 @@ public class CalculatorController {
 		
 		long[] fcf = Calculator.calculateFreeCashFlow(cf, capex);
 		
+		double fcfChange;
 		double[] percentChange = Calculator.calculatePercentChange(fcf);
-		double fcfChange = Calculator.getChangeForCalc(percentChange);
+		/*
+		 * HERE WE ARE ASSIGNING GROWTH RATE IF IT EXISTS RATHER THAN CALCULATING GROWTHRATE.  IT LOOKS LIKE PERCENTCHANGE IS COMPLETELY UNNECESSARY BUT 
+		 * I'M NOT GOING TO TEST THAT RIGHT NOW.  THIS WILL ALSO NEED DONE IN THE ABOVE METHOD.
+		 */
+		
+		if (growthRate == null) {
+			
+			
+			fcfChange = Calculator.getChangeForCalc(percentChange);
+		} else {
+			fcfChange = growthRate;
+		}
+		
 		
 		double fairPrice = Calculator.getFairPrice(Calculator.calculateTotalFcf(fcf, desiredReturn, currentEquity, percentChange, fcfChange), shares);
 		double discountedPrice = Calculator.getDiscountedPrice(fairPrice, ((double) marginOfSafety)/100);

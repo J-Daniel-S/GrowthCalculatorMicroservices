@@ -1,5 +1,0 @@
-package the.best.stockprovider.templates;
-
-public interface StockAsset {
-
-}

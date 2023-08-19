@@ -1,0 +1,5 @@
+package the.best.growthvaluecalculator.config;
+
+public class CorsConfiguration {
+
+}

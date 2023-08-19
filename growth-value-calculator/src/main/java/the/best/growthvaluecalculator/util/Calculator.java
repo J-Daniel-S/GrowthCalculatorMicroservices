@@ -141,20 +141,6 @@ public class Calculator {
 		long totalDcf = totalDcf(calcFcf, fcfChange, dcfMultipliers);
 		return totalDcf + equity;
 	}
-
-	//not needed
-	public static long calculateTotalFcf(StockRequest stock) {
-		stock.setMarginOfSafety(String.valueOf(Double.valueOf(stock.getMarginOfSafety()) / 100));
-		double[] percentChange = calculatePercentChange(stock.getFreeCashFlow());
-		stock.setChange(percentChange);
-		double[] dcfMultipliers = calculateDcfMultipliers(stock.getDesiredReturn());
-		long calcFcf = getFcfForCalculation(stock.getFreeCashFlow());
-		double fcfChange = getChangeForCalc(percentChange);
-		long equity = stock.getCurrentEquity();
-		stock.setAvgChange(fcfChange);
-		long totalDcf = totalDcf(calcFcf, fcfChange, dcfMultipliers);
-		return totalDcf + equity;
-	}
 	
 	public static long calculateTotalFcf(long[] fcf, 
 			long desiredReturn, 
@@ -166,28 +152,6 @@ public class Calculator {
 		long calcFcf = getFcfForCalculation(fcf);
 		long totalDcf = totalDcf(calcFcf, fcfChange, dcfMultipliers);
 		return totalDcf + currentEquity;
-	}
-
-	//not needed... still don't know what fcfchange is for
-	public static long calculateTotalFcf(StockRequest stock, long fcfChange) {
-		stock.setMarginOfSafety(String.valueOf(Double.valueOf(stock.getMarginOfSafety()) / 100));
-		double[] percentChange = calculatePercentChange(stock.getFreeCashFlow());
-		stock.setChange(percentChange);
-		double[] dcfMultipliers = calculateDcfMultipliers(stock.getDesiredReturn());
-		long calcFcf = getFcfForCalculation(stock.getFreeCashFlow());
-		long equity = stock.getCurrentEquity();
-		stock.setAvgChange(fcfChange);
-		long totalDcf = totalDcf(calcFcf, fcfChange, dcfMultipliers);
-		return totalDcf + equity;
-	}
-
-	//not needed
-	public static StockRequest setPrices(StockRequest stock, long total) {
-		double fairPrice = (double) total / stock.getShares();
-		double discountedPrice = fairPrice * (1 - Double.valueOf(stock.getMarginOfSafety()));
-		stock.setBuyAndHoldValue(fairPrice);
-		stock.setDiscountedValue(discountedPrice);
-		return stock;
 	}
 	
 	public static double getFairPrice(long total, long shares) {

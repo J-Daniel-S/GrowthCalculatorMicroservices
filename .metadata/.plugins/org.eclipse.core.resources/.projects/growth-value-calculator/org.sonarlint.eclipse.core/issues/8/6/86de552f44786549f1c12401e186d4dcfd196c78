@@ -1,24 +1,24 @@
 
 “
-java:S1488J"[Immediately return this expression instead of assigning it to the temporary variable "val".(Ó…Ãúÿÿÿÿ8¥Øˆıœ1H¡RMINORZ
-CODE_SMELL
-o
-java:S1854"<Remove this useless assignment to local variable "decimals".(ùÛª¼8¥Øˆıœ1H RMAJORZ
-CODE_SMELL
-S
-java:S2129" Remove this "String" constructor(ùÛª¼8¥Øˆıœ1H©RMAJORZ
-CODE_SMELL
-l
-java:S2184A"@Cast one of the operands of this integer division to a "double".(™óÀ©8¥Øˆıœ1H¨RMINORZBUG
-q	java:S106€"9Replace this use of System.out or System.err by a logger.(İáüåıÿÿÿÿ8¥Øˆıœ1H¤RMAJORZ
-CODE_SMELL
-y
-java:S2184"HCast one of the operands of this multiplication operation to a "double".(»í‘­üÿÿÿÿ8ü™ãš1HRMINORZBUG
-“
-java:S1488Q"[Immediately return this expression instead of assigning it to the temporary variable "val".(é ÿÿÿÿÿ8¥Øˆıœ1H¥RMINORZ
+java:S1488Q"[Immediately return this expression instead of assigning it to the temporary variable "val".(é ÿÿÿÿÿ8¥Øˆıœ1H‰RMINORZ
 CODE_SMELL
 m
-java:S1172¢"4Remove this unused method parameter "percentChange".( ¨úşÿÿÿÿ8¿âŸ1H«RMAJORZ
+java:S1172”"4Remove this unused method parameter "percentChange".( ¨úşÿÿÿÿ8¿âŸ1HŒRMAJORZ
 CODE_SMELL
-ˆ	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àä¢Øùÿÿÿÿ8¥Øˆıœ1HRMINORZ
+y
+java:S2184"HCast one of the operands of this multiplication operation to a "double".(»í‘­üÿÿÿÿ8ü™ãš1HRMINORZBUG
+o
+java:S1854"<Remove this useless assignment to local variable "decimals".(ùÛª¼8¥Øˆıœ1HRMAJORZ
+CODE_SMELL
+“
+java:S1488J"[Immediately return this expression instead of assigning it to the temporary variable "val".(Ó…Ãúÿÿÿÿ8¥Øˆıœ1HRMINORZ
+CODE_SMELL
+S
+java:S2129" Remove this "String" constructor(ùÛª¼8¥Øˆıœ1H“RMAJORZ
+CODE_SMELL
+l
+java:S2184A"@Cast one of the operands of this integer division to a "double".(™óÀ©8¥Øˆıœ1H•RMINORZBUG
+q	java:S106€"9Replace this use of System.out or System.err by a logger.(İáüåıÿÿÿÿ8¥Øˆıœ1H–RMAJORZ
+CODE_SMELL
+ˆ	java:S117%"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àä¢Øùÿÿÿÿ8¥Øˆıœ1H—RMINORZ
 CODE_SMELL
