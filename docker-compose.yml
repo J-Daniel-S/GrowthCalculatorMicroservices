@@ -1,0 +1,76 @@
+version: "3.8"
+
+services:
+    naming-server:
+        container_name: naming-server
+        image: jsharper55/growthcalc-naming-server:0.0.1
+        mem_limit: 700m
+        restart:  always
+        ports:
+            - "8761:8761"
+        networks:
+            - growthcalc-network
+    
+    api-gateway:
+        container_name: api-gateway
+        image: jsharper55/growthcalc-api-gateway:0.0.1
+        mem_limit:  700m
+        restart:  always
+        ports:
+            - "8765:8765"
+        networks:
+            - growthcalc-network
+        depends_on:
+            - naming-server
+        environment:
+            EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: 'http://naming-server:8761/eureka'
+    
+    growthcalc-calculator:
+        container_name: calculator
+        image: jsharper55/growthcalc-calculator:0.0.1
+        mem_limit: 700m
+        restart:  always
+        ports:
+            - "8000:8000"
+        networks:
+            - growthcalc-network
+        depends_on:
+            - naming-server
+            - api-gateway
+        environment:
+            EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: 'http://naming-server:8761/eureka'
+          
+    growthcalc-fixed-asset-provider:
+        container_name: fixed-provider
+        image: jsharper55/growthcalc-fixed-asset-provider:0.0.1
+        mem_limit: 700m
+        restart:  always
+        ports:
+            - "8100:8100"
+        networks:
+            - growthcalc-network
+        depends_on:
+            - naming-server
+            - api-gateway
+        environment:
+            EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: 'http://naming-server:8761/eureka'
+            CALCULATOR.PATH: 'http://calculator:'
+
+    growthcalc-stock-provider:
+        container_name: stock-provider
+        image: jsharper55/growthcalc-stock-provider:0.0.1
+        mem_limit: 700m
+        restart:  always
+        ports:
+            - "8200:8200"
+        networks:
+            - growthcalc-network
+        depends_on:
+            - naming-server
+            - api-gateway
+        environment:
+            EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: 'http://naming-server:8761/eureka'
+            CALCULATOR.PATH: 'http://calculator:'
+
+networks:
+    growthcalc-network:

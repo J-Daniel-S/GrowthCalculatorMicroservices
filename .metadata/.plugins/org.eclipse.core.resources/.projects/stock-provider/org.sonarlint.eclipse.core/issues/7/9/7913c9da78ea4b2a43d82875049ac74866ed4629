@@ -1,7 +1,7 @@
 
-ƒ
-java:S1128"PRemove this unused import 'org.springframework.web.bind.annotation.CrossOrigin'.(Ί΄Ρ†8ίνη 1HΡRMINORZ
-CODE_SMELL
 
-java:S1128"RRemove this unused import 'org.springframework.web.bind.annotation.RequestMethod'.(Κ™Πÿϋÿÿÿÿ8ίνη 1HΣRMINORZ
+java:S1128"RRemove this unused import 'org.springframework.web.bind.annotation.RequestMethod'.(Κ™Πÿϋÿÿÿÿ8ίνη 1HγRMINORZ
+CODE_SMELL
+ƒ
+java:S1128"PRemove this unused import 'org.springframework.web.bind.annotation.CrossOrigin'.(Ί΄Ρ†8ίνη 1HεRMINORZ
 CODE_SMELL
