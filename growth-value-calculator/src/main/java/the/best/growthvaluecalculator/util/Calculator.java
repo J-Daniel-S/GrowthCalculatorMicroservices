@@ -12,7 +12,7 @@ public class Calculator {
 		
 	}
 	
-	public static double calculateTotal(long principle, double interest, int length, int compoundFrequency) {
+	public static double calculateTotal(long principle, double interest, double length, int compoundFrequency) {
 		return principle * Math.pow(1 + (interest / compoundFrequency), compoundFrequency* length );
 	}
 

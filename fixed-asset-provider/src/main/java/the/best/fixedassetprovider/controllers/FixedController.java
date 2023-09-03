@@ -4,7 +4,6 @@ import org.apache.hc.core5.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +14,6 @@ import the.best.fixedassetprovider.assets.Fixed;
 
 @RestController//8100
 @RequestMapping("/fixed")
-//@CrossOrigin(origins = "*")
 public class FixedController {
 	
 	@Autowired
@@ -25,7 +23,7 @@ public class FixedController {
 	public ResponseEntity<Fixed> getFixedAsset(
 			@RequestParam long principle, 
 			@RequestParam double interest,
-			@RequestParam int length,
+			@RequestParam double length,
 			@RequestParam int compoundFrequency
 			) {
 		StringBuilder request = new StringBuilder()

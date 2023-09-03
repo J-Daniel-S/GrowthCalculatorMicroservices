@@ -52,6 +52,7 @@ services:
         depends_on:
             - naming-server
             - api-gateway
+            - growthcalc-calculator
         environment:
             EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: 'http://naming-server:8761/eureka'
             CALCULATOR.PATH: 'http://calculator:'
@@ -68,9 +69,26 @@ services:
         depends_on:
             - naming-server
             - api-gateway
+            - growthcalc-calculator
         environment:
             EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: 'http://naming-server:8761/eureka'
             CALCULATOR.PATH: 'http://calculator:'
+            
+    growthcalc-gui:
+        container_name: growthcalc-gui
+        image: jsharper55/growthcalc-gui:0.0.1
+        mem_limit: 700m
+        restart: always
+        ports:
+            - "3000:3000"
+        networks:
+            - growthcalc-network
+        depends_on:
+            - naming-server
+            - api-gateway
+            - growthcalc-fixed-asset-provider
+            - growthcalc-stock-provider
+            - growthcalc-calculator
 
 networks:
     growthcalc-network:

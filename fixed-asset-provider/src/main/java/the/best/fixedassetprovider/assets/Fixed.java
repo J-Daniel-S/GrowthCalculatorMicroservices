@@ -10,7 +10,7 @@ public class Fixed implements FixedRequest {
 	private long endValue;
 	private int compoundFrequency;
 
-	public Fixed(long principle, double interestRate, int iLength, int compoundFrequency) {
+	public Fixed(long principle, double interestRate, double iLength, int compoundFrequency) {
 		super();
 		this.principle = principle;
 		this.interestRate = interestRate;
@@ -18,7 +18,7 @@ public class Fixed implements FixedRequest {
 		this.compoundFrequency = compoundFrequency;
 	}
 	
-	public Fixed(long principle, double interestRate, int iLength, int compoundFrequency, long endValue) {
+	public Fixed(long principle, double interestRate, double iLength, int compoundFrequency, long endValue) {
 		super();
 		this.principle = principle;
 		this.interestRate = interestRate;
